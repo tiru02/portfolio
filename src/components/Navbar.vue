@@ -23,41 +23,43 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
 <template>
   <div id="progress" :style="{ width: progressWidth + '%' }"></div>
 
-  <nav class="navbar">
-    <div class="nav-content">
+  <header class="nav-header">
+    <div class="nav-wrapper">
       <div class="logo">
         <RouterLink to="/" @click="isMenuOpen = false">
           VIKAT<span class="dot">.</span>
         </RouterLink>
       </div>
-      
-      <button class="menu-btn" @click="toggleMenu">
-        <span class="btn-text">{{ isMenuOpen ? 'CLOSE' : 'MENU' }}</span>
-        <div class="burger-icon" :class="{ 'is-active': isMenuOpen }">
-          <span></span>
-          <span></span>
-        </div>
+
+      <button class="menu-trigger" @click="toggleMenu" :class="{ 'active': isMenuOpen }">
+        <span class="line"></span>
+        <span class="line"></span>
       </button>
     </div>
-  </nav>
+  </header>
 
-  <transition name="movie-fade">
-    <div v-if="isMenuOpen" class="movie-overlay">
-      <ul class="movie-links">
-        <li v-for="(link, i) in [
-          { name: 'Home', path: '/' },
-          { name: 'Education', path: '/education' },
-          { name: 'Experience', path: '/experience' },
-          { name: 'Projects', path: '/projects' },
-          { name: 'OSS', path: '/open_source' },
-          { name: 'Contact', path: '/contact_me' }
-        ]" :key="i" :style="{ transitionDelay: (i * 0.1) + 's' }">
-          <RouterLink :to="link.path" @click="toggleMenu">
-            <span class="link-num">0{{ i + 1 }}</span>
-            <span class="link-text">{{ link.name }}</span>
+  <transition name="slide">
+    <div v-if="isMenuOpen" class="full-menu">
+      <div class="menu-content">
+        <nav class="links-list">
+          <RouterLink v-for="(link, i) in [
+            { name: 'Home', path: '/' },
+            { name: 'Education', path: '/education' },
+            { name: 'Experience', path: '/experience' },
+            { name: 'Projects', path: '/projects' },
+            { name: 'OSS', path: '/open_source' },
+            { name: 'Contact', path: '/contact_me' }
+          ]" 
+          :key="i" 
+          :to="link.path" 
+          @click="toggleMenu"
+          class="menu-link"
+          :style="{ transitionDelay: (i * 0.05) + 's' }">
+            <span class="num">0{{ i + 1 }}</span>
+            <span class="text">{{ link.name }}</span>
           </RouterLink>
-        </li>
-      </ul>
+        </nav>
+      </div>
     </div>
   </transition>
 </template>
@@ -69,23 +71,25 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
   left: 0;
   height: 3px;
   background: #ff7a30;
-  z-index: 10000;
+  z-index: 10001;
 }
 
-.navbar {
+/* Header Styling */
+.nav-header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 60px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 10000;
   display: flex;
   align-items: center;
-  z-index: 9999;
-  background: rgba(255, 255, 255, 0.95);
   border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-.nav-content {
+.nav-wrapper {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -103,94 +107,80 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
 }
 .dot { color: #ff7a30; }
 
-.menu-btn {
+/* Hamburger Button */
+.menu-trigger {
   background: none;
   border: none;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.btn-text {
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-}
-
-.burger-icon {
-  width: 20px;
-  height: 10px;
+  width: 30px;
+  height: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
+  z-index: 10001;
 }
 
-.burger-icon span {
+.line {
+  display: block;
   width: 100%;
   height: 2px;
   background: #1a1a1a;
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.active .line { background: #fff; }
+.active .line:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+.active .line:nth-child(2) { transform: translateY(-5px) rotate(-45deg); }
+
+/* Fullscreen Overlay */
+.full-menu {
+  position: fixed;
+  inset: 0;
+  background: #1a1a1a;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  padding: 0 10%;
+}
+
+.links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.menu-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   transition: 0.3s;
 }
 
-.burger-icon.is-active span { background: #fff; }
-.burger-icon.is-active span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
-.burger-icon.is-active span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
-
-.movie-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: 9998;
-  background: #1a1a1a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.num {
+  font-family: monospace;
+  color: #ff7a30;
+  font-size: 0.8rem;
 }
 
-.movie-links {
-  list-style: none;
-  padding: 0;
-  text-align: center;
-}
-
-.movie-links li {
-  margin: 1.5rem 0;
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.movie-links a {
-  text-decoration: none;
+.text {
   color: #fff;
   font-size: 2.5rem;
-  font-weight: 900;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -1px;
 }
 
-.link-num {
-  font-size: 0.8rem;
-  color: #ff7a30;
-  margin-right: 1rem;
+/* Stable Animations */
+.slide-enter-active, .slide-leave-active {
+  transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
 }
 
-.movie-fade-enter-active, .movie-fade-leave-active {
-  transition: opacity 0.4s ease;
+.slide-enter-from, .slide-leave-to {
+  transform: translateY(-100%);
 }
 
-.movie-fade-enter-from, .movie-fade-leave-to {
-  opacity: 0;
-}
-
-.movie-fade-enter-active .movie-links li {
-  animation: slideIn 0.5s forwards;
-}
-
-@keyframes slideIn {
-  to { opacity: 1; transform: translateY(0); }
+@media (max-width: 600px) {
+  .text { font-size: 1.8rem; }
 }
 </style>
