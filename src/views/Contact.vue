@@ -15,7 +15,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <main class="bg-[#fafafa] text-[#1a1a1a] selection:bg-[#ff7a30] antialiased overflow-x-hidden">
+  <main class="bg-[#fafafa] text-[#1a1a1a] selection:bg-[#ff7a30] antialiased">
     
     <section class="pt-32 pb-20 px-8 reveal">
       <div class="max-w-7xl mx-auto">
@@ -35,6 +35,7 @@ onMounted(async () => {
             <a href="mailto:vikat0369@gmail.com" class="block text-3xl md:text-4xl font-black hover:text-[#ff7a30] transition-colors break-words">
               vikat0369@gmail.com
             </a>
+            <p class="text-xl font-bold text-gray-600">+91 9014952128</p>
           </div>
 
           <div class="space-y-6 pt-8">
@@ -53,7 +54,7 @@ onMounted(async () => {
         </div>
 
         <div class="lg:col-span-7 bg-white border border-black/5 rounded-[40px] p-8 md:p-12 shadow-2xl shadow-black/5">
-          <form class="space-y-8">
+          <form class="space-y-8" @submit.prevent>
             <div class="grid md:grid-cols-2 gap-8">
               <div class="space-y-2">
                 <label class="text-[10px] font-black uppercase tracking-widest text-gray-400">Full Name</label>
@@ -97,13 +98,44 @@ onMounted(async () => {
   -webkit-text-stroke: 1.5px #1a1a1a; 
   color: transparent; 
 }
+
 .reveal { 
   opacity: 0; 
-  transform: translateY(40px); 
-  transition: all 1s cubic-bezier(0.2, 1, 0.3, 1); 
+  transform: translateY(30px); 
+  transition: opacity 1s cubic-bezier(0.2, 1, 0.3, 1), transform 1s cubic-bezier(0.2, 1, 0.3, 1);
+  will-change: transform, opacity;
 }
+
 .reveal-visible { 
   opacity: 1; 
   transform: translateY(0); 
+}
+</style>
+
+<style>
+/* Fixed double scrollbar issue by targeting the root */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #fafafa;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fafafa;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a1a1a;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff7a30;
 }
 </style>
