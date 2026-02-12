@@ -42,21 +42,6 @@ onMounted(() => {
   <div class="bg-white text-black selection:bg-[#ff4d00] selection:text-white antialiased">
 
 <header class="sticky top-0 z-[999] bg-white">
-  <nav class="border-b border-gray-100 bg-white">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
-
-      <div class="font-black text-sm uppercase tracking-widest">
-        TIRU
-      </div>
-
-      <div class="flex gap-8 text-[10px] font-bold uppercase tracking-widest">
-        <a href="/#/about" class="hover:text-[#ff4d00] transition-colors">About</a>
-        <a href="/#/work" class="hover:text-[#ff4d00] transition-colors">Work</a>
-        <a href="/#/contact_me" class="hover:text-[#ff4d00] transition-colors">Contact</a>
-      </div>
-
-    </div>
-  </nav>
 
 </header>
 
