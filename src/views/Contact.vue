@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, nextTick } from 'vue';
+import { useRouter } from 'vue-router';
 
 onMounted(async () => {
   await nextTick();
@@ -12,6 +13,13 @@ onMounted(async () => {
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 });
+
+const router = useRouter();
+
+const handleRedirect = () => {
+  // Vue Router handles the '#' prefix automatically based on your router config
+  router.push('/on_contact');
+};
 </script>
 
 <template>
@@ -54,7 +62,7 @@ onMounted(async () => {
         </div>
 
         <div class="lg:col-span-7 bg-white border border-black/5 rounded-[40px] p-8 md:p-12 shadow-2xl shadow-black/5">
-          <form class="space-y-8" @submit.prevent>
+          <form class="space-y-8" @submit.prevent="handleRedirect">
             <div class="grid md:grid-cols-2 gap-8">
               <div class="space-y-2">
                 <label class="text-[10px] font-black uppercase tracking-widest text-gray-400">Full Name</label>

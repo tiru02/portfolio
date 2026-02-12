@@ -1,30 +1,40 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { RouterLink } from "vue-router";
 
 const progressWidth = ref(0);
 const isFixed = ref(false);
 
+const handleScroll = () => {
+  const height = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  progressWidth.value = docHeight > 0 ? Math.floor((height / docHeight) * 100) : 0;
+  isFixed.value = height > 50;
+};
+
 onMounted(() => {
-  window.addEventListener("scroll", () => {
-    const height = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    progressWidth.value = Math.floor((height / docHeight) * 100);
-    isFixed.value = height > 50;
-  });
+  window.addEventListener("scroll", handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
 });
 </script>
 
 <template>
   <div id="progress" :style="{ width: progressWidth + '%' }"></div>
+  
   <nav :class="['nav-container', { 'nav-fixed': isFixed }]">
     <div class="nav-content">
-      <div class="logo">
-        <RouterLink to="/">
-          VIKAT<span class="dot">.</span>
-        </RouterLink>
-      </div>
       
+      <div class="flex items-center">
+        <div class="logo">
+          <RouterLink to="/" class="text-center">
+            VIKAT<span class="dot">.</span>
+          </RouterLink>
+        </div>
+      </div>
+
       <ul class="nav-links">
         <li><RouterLink to="/" exact-active-class="active">Home</RouterLink></li>
         <li><RouterLink to="/education" exact-active-class="active">Education</RouterLink></li>
@@ -44,7 +54,7 @@ onMounted(() => {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1001;
+  z-index: 1002;
   transition: width 0.1s ease-out;
 }
 
@@ -57,6 +67,7 @@ onMounted(() => {
   background: white;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 1000;
+  position: relative;
 }
 
 .nav-fixed {
@@ -121,7 +132,7 @@ onMounted(() => {
   transform: translateY(-2px);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .nav-links { display: none; }
 }
 </style>
