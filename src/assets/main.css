@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::selection {
+  background-color: #ff7a30;
+  color: white;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@font-face {
+  font-family: "ccr";
+  src: url("/fonts/ccr.ttf") format("truetype");
+}
+@font-face {
+  font-family: sintony;
+  src: url("/fonts/sintony.ttf") format("truetype");
+}
+@font-face {
+  font-family: "cursive";
+  src: url("/fonts/CedarvilleCursive-Regular.ttf") format("truetype");
+}
+:root {
+    --primary-color: #ff7a30; /* Keep brand color same */
+    --secondary-color: #6e84b8; /* Slightly brighter blue for dark mode */
+    --background-color: #fff;
+    --text-color: #000;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #ff7a30; /* Keep brand color same */
+    --secondary-color: #6e84b8; /* Slightly brighter blue for dark mode */
+    --background-color: #141414;
+    --text-color: #e6e6e6;
+  }
+}
+html{
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+* {
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  box-sizing: border-box;
+}
