@@ -31,6 +31,17 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
         </RouterLink>
       </div>
 
+      <nav class="desktop-nav">
+        <ul class="nav-links">
+          <li><RouterLink to="/" exact-active-class="active">Home</RouterLink></li>
+          <li><RouterLink to="/education" exact-active-class="active">Education</RouterLink></li>
+          <li><RouterLink to="/experience" exact-active-class="active">Experience</RouterLink></li>
+          <li><RouterLink to="/projects" exact-active-class="active">Projects</RouterLink></li>
+          <li><RouterLink to="/open_source" exact-active-class="active">OSS</RouterLink></li>
+          <li><RouterLink to="/contact_me" class="contact-btn">Contact</RouterLink></li>
+        </ul>
+      </nav>
+
       <button class="menu-trigger" @click="toggleMenu" :class="{ 'active': isMenuOpen }">
         <span class="line"></span>
         <span class="line"></span>
@@ -40,26 +51,20 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
 
   <transition name="slide">
     <div v-if="isMenuOpen" class="full-menu">
-      <div class="menu-content">
-        <nav class="links-list">
-          <RouterLink v-for="(link, i) in [
-            { name: 'Home', path: '/' },
-            { name: 'Education', path: '/education' },
-            { name: 'Experience', path: '/experience' },
-            { name: 'Projects', path: '/projects' },
-            { name: 'OSS', path: '/open_source' },
-            { name: 'Contact', path: '/contact_me' }
-          ]" 
-          :key="i" 
-          :to="link.path" 
-          @click="toggleMenu"
-          class="menu-link"
-          :style="{ transitionDelay: (i * 0.05) + 's' }">
-            <span class="num">0{{ i + 1 }}</span>
-            <span class="text">{{ link.name }}</span>
-          </RouterLink>
-        </nav>
-      </div>
+      <nav class="mobile-links-list">
+        <RouterLink v-for="(link, i) in [
+          { name: 'Home', path: '/' },
+          { name: 'Education', path: '/education' },
+          { name: 'Experience', path: '/experience' },
+          { name: 'Projects', path: '/projects' },
+          { name: 'OSS', path: '/open_source' },
+          { name: 'Contact', path: '/contact_me' }
+        ]" 
+        :key="i" :to="link.path" @click="toggleMenu" class="mobile-link">
+          <span class="num">0{{ i + 1 }}</span>
+          <span class="text">{{ link.name }}</span>
+        </RouterLink>
+      </nav>
     </div>
   </transition>
 </template>
@@ -71,16 +76,15 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
   left: 0;
   height: 3px;
   background: #ff7a30;
-  z-index: 10001;
+  z-index: 10002;
 }
 
-/* Header Styling */
 .nav-header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 60px;
+  height: 80px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   z-index: 10000;
@@ -93,7 +97,7 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -101,22 +105,50 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
 
 .logo a {
   font-weight: 900;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   text-decoration: none;
   color: #1a1a1a;
+  letter-spacing: -1px;
 }
 .dot { color: #ff7a30; }
 
-/* Hamburger Button */
+/* Desktop Menu Styles */
+.desktop-nav .nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  align-items: center;
+}
+
+.desktop-nav a {
+  text-decoration: none;
+  color: #666;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.3s;
+}
+
+.desktop-nav a:hover, .active { color: #ff7a30 !important; }
+
+.contact-btn {
+  background: #1a1a1a;
+  color: white !important;
+  padding: 0.6rem 1.2rem;
+  border-radius: 100px;
+}
+
+/* Mobile Trigger */
 .menu-trigger {
+  display: none;
   background: none;
   border: none;
   cursor: pointer;
   width: 30px;
-  height: 20px;
-  display: flex;
+  height: 18px;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   z-index: 10001;
 }
 
@@ -125,14 +157,20 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
   width: 100%;
   height: 2px;
   background: #1a1a1a;
-  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: 0.3s;
 }
 
-.active .line { background: #fff; }
-.active .line:nth-child(1) { transform: translateY(5px) rotate(45deg); }
-.active .line:nth-child(2) { transform: translateY(-5px) rotate(-45deg); }
+/* Mobile View Adjustments */
+@media (max-width: 900px) {
+  .desktop-nav { display: none; }
+  .menu-trigger { display: flex; }
+  
+  .active .line { background: #fff; }
+  .active .line:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .active .line:nth-child(2) { transform: translateY(-8px) rotate(-45deg); }
+}
 
-/* Fullscreen Overlay */
+/* Mobile Overlay */
 .full-menu {
   position: fixed;
   inset: 0;
@@ -140,47 +178,26 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
   z-index: 9999;
   display: flex;
   align-items: center;
-  padding: 0 10%;
+  padding-left: 10%;
 }
 
-.links-list {
+.mobile-links-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
-.menu-link {
+.mobile-link {
   text-decoration: none;
   display: flex;
   align-items: center;
   gap: 1rem;
-  transition: 0.3s;
 }
 
-.num {
-  font-family: monospace;
-  color: #ff7a30;
-  font-size: 0.8rem;
-}
+.num { font-size: 0.8rem; color: #ff7a30; font-family: monospace; }
+.text { color: #fff; font-size: 2.5rem; font-weight: 800; text-transform: uppercase; }
 
-.text {
-  color: #fff;
-  font-size: 2.5rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-}
-
-/* Stable Animations */
-.slide-enter-active, .slide-leave-active {
-  transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
-}
-
-.slide-enter-from, .slide-leave-to {
-  transform: translateY(-100%);
-}
-
-@media (max-width: 600px) {
-  .text { font-size: 1.8rem; }
-}
+/* Transitions */
+.slide-enter-active, .slide-leave-active { transition: transform 0.5s cubic-bezier(0.85, 0, 0.15, 1); }
+.slide-enter-from, .slide-leave-to { transform: translateY(-100%); }
 </style>
