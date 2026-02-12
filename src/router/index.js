@@ -4,7 +4,7 @@ import {
   createWebHashHistory,
   createWebHistory,
 } from "vue-router";
-import Home from "../../public/Home.vue";
+import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import Experience from "../views/Experience.vue";
 import Education from "@/views/Education.vue";
