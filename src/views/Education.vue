@@ -32,7 +32,7 @@ onMounted(async () => {
         <div class="grid lg:grid-cols-12 gap-12 border-t border-black/5 pt-12">
           <div class="lg:col-span-4">
             <h2 class="text-2xl font-black uppercase tracking-tight">University</h2>
-            <p class="text-gray-400 font-bold mt-2">2022 — 2026 (Expected)</p>
+            <p class="text-gray-400 font-bold mt-2">Expected 2026</p>
           </div>
           
           <div class="lg:col-span-8 space-y-8">
@@ -69,12 +69,12 @@ onMounted(async () => {
           
           <div class="lg:col-span-8 grid md:grid-cols-2 gap-12">
             <div class="space-y-4">
-              <span class="px-3 py-1 bg-[#ff7a30]/10 text-[#ff7a30] rounded-full text-[10px] font-black uppercase tracking-widest">Class XII | 2021</span>
+              <span class="px-3 py-1 bg-[#ff7a30]/10 text-[#ff7a30] rounded-full text-[10px] font-black uppercase tracking-widest">Intermediate | 2021</span>
               <h3 class="text-2xl font-black text-gray-400">Board of Intermediate Education, AP</h3>
-              <p class="text-5xl font-black">Grade A</p>
+              <p class="text-5xl font-black">840 <span class="text-lg text-gray-300">/ 1000</span></p>
             </div>
             <div class="space-y-4">
-              <span class="px-3 py-1 bg-[#ff7a30]/10 text-[#ff7a30] rounded-full text-[10px] font-black uppercase tracking-widest">Class X | 2019</span>
+              <span class="px-3 py-1 bg-[#ff7a30]/10 text-[#ff7a30] rounded-full text-[10px] font-black uppercase tracking-widest">SSC | 2019</span>
               <h3 class="text-2xl font-black text-gray-400">Board of Secondary Education, AP</h3>
               <p class="text-5xl font-black">9.0 <span class="text-lg text-gray-300">GPA</span></p>
             </div>
