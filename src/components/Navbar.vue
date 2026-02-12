@@ -5,6 +5,7 @@ import { RouterLink } from "vue-router";
 const isMenuOpen = ref(false);
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 const progressWidth = ref(0);
 
 const handleScroll = () => {
@@ -23,13 +24,23 @@ const isFixed = ref(false);
 const handleScroll = () => {
   isFixed.value = window.scrollY > 20;
 >>>>>>> Stashed changes
+=======
+const isFixed = ref(false);
+
+const handleScroll = () => {
+  isFixed.value = window.scrollY > 20;
+>>>>>>> Stashed changes
 };
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   document.body.style.overflow = isMenuOpen.value ? "hidden" : "";
+=======
+  document.body.style.overflow = isMenuOpen.value ? 'hidden' : '';
+>>>>>>> Stashed changes
 =======
   document.body.style.overflow = isMenuOpen.value ? 'hidden' : '';
 >>>>>>> Stashed changes
@@ -45,10 +56,15 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
 <template>
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   <div id="progress" :style="{ width: progressWidth + '%' }"></div>
 
   <header class="nav-header">
     <div class="nav-wrapper">
+=======
+  <nav :class="['nav-shell', { 'is-scrolled': isFixed, 'is-open': isMenuOpen }]">
+    <div class="nav-inner">
+>>>>>>> Stashed changes
 =======
   <nav :class="['nav-shell', { 'is-scrolled': isFixed, 'is-open': isMenuOpen }]">
     <div class="nav-inner">
@@ -63,6 +79,7 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
         </RouterLink>
       </div>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
       <nav class="desktop-nav">
@@ -83,6 +100,8 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
       <ul class="nav-desktop">
         <li><RouterLink to="/projects">Projects</RouterLink></li>
         <li><RouterLink to="/experience">Experience</RouterLink></li>
@@ -96,7 +115,21 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
         </div>
       </button>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+    </div>
+
+    <div class="mobile-grid">
+      <RouterLink v-for="(item, i) in ['Home', 'Education', 'Experience', 'Projects', 'OSS', 'Contact']" 
+                  :key="i" 
+                  :to="'/' + item.toLowerCase()" 
+                  @click="toggleMenu"
+                  class="grid-item">
+        <span class="index">0{{ i + 1 }}</span>
+        <span class="label">{{ item }}</span>
+      </RouterLink>
+>>>>>>> Stashed changes
     </div>
 
     <div class="mobile-grid">
@@ -147,6 +180,7 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
 <style scoped>
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 #progress {
   position: fixed;
   top: 0;
@@ -192,6 +226,17 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
   display: flex;
   align-items: center;
 >>>>>>> Stashed changes
+=======
+/* 1. Slim Base Height */
+.nav-shell {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px; /* Reduced height */
+  display: flex;
+  align-items: center;
+>>>>>>> Stashed changes
   background: white;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 1000;
@@ -216,6 +261,7 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
   align-items: center;
 }
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 .logo a {
@@ -348,6 +394,39 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
 }
 
 >>>>>>> Stashed changes
+=======
+/* 2. Logo & Desktop links */
+.logo a { font-weight: 900; font-size: 1.2rem; text-decoration: none; color: #1a1a1a; }
+.dot { color: #ff7a30; }
+
+.nav-desktop { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+.nav-desktop a { text-decoration: none; color: #666; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+.mini-btn { background: #1a1a1a; color: white !important; padding: 0.4rem 1rem; border-radius: 4px; }
+
+/* 3. Mobile Toggle Positioning */
+.menu-toggle {
+  display: none;
+  background: #1a1a1a;
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.hamburger span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: white;
+  margin: 4px auto;
+  transition: 0.3s;
+}
+
+>>>>>>> Stashed changes
 /* 4. The Creative Mobile Grid */
 .mobile-grid {
   position: fixed;
@@ -387,6 +466,9 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
   .is-open .hamburger span:nth-child(1) { transform: translateY(3px) rotate(45deg); }
   .is-open .hamburger span:nth-child(2) { transform: translateY(-3px) rotate(-45deg); }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
