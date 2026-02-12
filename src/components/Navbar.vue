@@ -23,17 +23,188 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
 <template>
   <div id="progress" :style="{ width: progressWidth + '%' }"></div>
 
-  <div class="perspective-container" :class="{ 'is-active': isMenuOpen }">
-    
-    <nav class="nav-bar">
-      <div class="nav-content">
-        <div class="logo">VIKAT<span class="dot">.</span></div>
-        <button class="burger" @click="toggleMenu">
-          <span></span>
-          <span></span>
-        </button>
+  <nav class="navbar">
+    <div class="nav-content">
+      <div class="logo">
+        <RouterLink to="/" @click="isMenuOpen = false">
+          VIKAT<span class="dot">.</span>
+        </RouterLink>
       </div>
-    </nav>
+      
+      <button class="menu-btn" @click="toggleMenu" :class="{ 'is-active': isMenuOpen }">
+        <span class="btn-text">{{ isMenuOpen ? 'CLOSE' : 'MENU' }}</span>
+        <div class="burger-icon">
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+    </div>
+  </nav>
+
+  <Transition name="movie-fade">
+    <div v-if="isMenuOpen" class="movie-overlay">
+      <div class="overlay-bg"></div>
+      <ul class="movie-links">
+        <li v-for="(link, i) in [
+          { name: 'Home', path: '/' },
+          { name: 'Education', path: '/education' },
+          { name: 'Experience', path: '/experience' },
+          { name: 'Projects', path: '/projects' },
+          { name: 'OSS', path: '/open_source' },
+          { name: 'Contact', path: '/contact_me' }
+        ]" :key="i" :style="{ transitionDelay: (i * 0.1) + 's' }">
+          <RouterLink :to="link.path" @click="toggleMenu">
+            <span class="link-num">0{{ i + 1 }}</span>
+            <span class="link-text">{{ link.name }}</span>
+          </RouterLink>
+        </li>
+      </ul>
+    </div>
+  </Transition>
+</template>
+
+<style scoped>
+#progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #ff7a30;
+  z-index: 10000;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+}
+
+.nav-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  font-weight: 900;
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: #1a1a1a;
+  letter-spacing: -1px;
+}
+.dot { color: #ff7a30; }
+
+.menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-text {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #1a1a1a;
+}
+
+.burger-icon {
+  width: 20px;
+  height: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.burger-icon span {
+  width: 100%;
+  height: 2px;
+  background: #1a1a1a;
+  transition: 0.3s;
+}
+
+.is-active .btn-text { color: #fff; }
+.is-active .burger-icon span { background: #fff; }
+.is-active .burger-icon span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+.is-active .burger-icon span:nth-child(2) { transform: translateY(-5px) rotate(-45deg); }
+
+.movie-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay-bg {
+  position: absolute;
+  inset: 0;
+  background: #1a1a1a;
+}
+
+.movie-links {
+  position: relative;
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.movie-links li {
+  margin: 1.5rem 0;
+  overflow: hidden;
+}
+
+.movie-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: clamp(2rem, 8vw, 4rem);
+  font-weight: 900;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  transition: opacity 0.3s;
+}
+
+.movie-links a:hover { opacity: 0.5; }
+
+.link-num {
+  font-size: 1rem;
+  color: #ff7a30;
+  margin-right: 1.5rem;
+  font-weight: 400;
+}
+
+/* Animations */
+.movie-fade-enter-active, .movie-fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.movie-fade-enter-from, .movie-fade-leave-to {
+  opacity: 0;
+}
+
+.movie-fade-enter-active .movie-links li {
+  animation: slideUp 0.6s cubic-bezier(0.2, 1, 0.3, 1) both;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
 
     <div class="main-content">
       <slot />
