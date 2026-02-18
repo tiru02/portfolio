@@ -11,28 +11,28 @@ const projects = [
   },
   {
     name: "Digital Library System",
-    description: "A full-stack catalog management platform[cite: 17]. This system features role-based authorization and secure user sessions[cite: 18]. I engineered a robust RESTful API to handle complex CRUD operations for book inventory and user management[cite: 18, 20].",
+    description: "A full-stack catalog management platform. This system features role-based authorization and secure user sessions. I engineered a robust RESTful API to handle complex CRUD operations for book inventory and user management.",
     framework: "MERN Stack & Handlebars",
     link: "https://digitallibrary-ht59.onrender.com",
     tag: "Full-Stack"
   },
   {
     name: "Resume Validation API",
-    description: "An intelligent validation engine designed to parse and verify professional document structures[cite: 27]. Built with Python and Flask, it utilizes custom logic to ensure data integrity and structural consistency in uploaded resumes[cite: 22, 23].",
+    description: "An intelligent validation engine designed to parse and verify professional document structures. Built with Python and Flask, it utilizes custom logic to ensure data integrity and structural consistency in uploaded resumes.",
     framework: "Python & Flask",
     link: "https://resval.vercel.app/",
     tag: "Intelligent Systems"
   },
   {
     name: "Calendar Management API",
-    description: "A specialized API ecosystem for scheduling and time management[cite: 23]. It features secure endpoints for event creation, synchronization, and session-based data persistence using relational database schemas[cite: 22, 23].",
+    description: "A specialized API ecosystem for scheduling and time management. It features secure endpoints for event creation, synchronization, and session-based data persistence using relational database schemas.",
     framework: "Python & Flask",
     link: "https://calender-api-ten.vercel.app/",
     tag: "API Design"
   },
   {
     name: "Student Complaint Portal",
-    description: "A streamlined digital interface for academic grievance management[cite: 21, 22]. Focused on user-centric design and secure backend processing to ensure transparency and efficiency in institutional communication[cite: 23].",
+    description: "A streamlined digital interface for academic grievance management. Focused on user-centric design and secure backend processing to ensure transparency and efficiency in institutional communication.",
     framework: "Express & Handlebars",
     link: "https://complaintform.onrender.com",
     tag: "Product Design"
@@ -104,7 +104,6 @@ onMounted(async () => {
 .reveal { opacity: 0; transform: translateY(50px); transition: all 1s cubic-bezier(0.2, 1, 0.3, 1); }
 .reveal-visible { opacity: 1; transform: translateY(0); }
 
-/* Responsive adjustments */
 @media (max-width: 1024px) {
   .reveal { transform: translateY(30px); }
 }
