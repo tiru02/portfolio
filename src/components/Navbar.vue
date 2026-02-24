@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed, watch } from "vue";
 import { RouterLink, useRoute } from "vue-router";
+import Loader from "./Loader.vue";
 
 const route = useRoute();
 const progressWidth = ref(0);
@@ -50,6 +51,7 @@ onUnmounted(() => {
 </script>
 
 <template>
+  <Loader />
   <div id="progress-container">
     <div id="progress-bar" :style="{ width: progressWidth + '%' }"></div>
   </div>
