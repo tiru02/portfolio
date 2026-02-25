@@ -1,7 +1,15 @@
 <script setup>
-import { onMounted, nextTick } from "vue";
+import { onMounted, nextTick, ref } from "vue";
 
 const projects = [
+  {
+    name: "Dot FM (Redline v1)",
+    description:
+      "A high-performance server framework and the previous version of Redline. Engineered as a specialized engine for digital audio and streaming, prioritizing real-time data synchronization and low-latency request handling.",
+    framework: "Node.js & React",
+    link: "https://dot-fm.vercel.app/",
+    tag: "Server Architecture",
+  },
   {
     name: "Custom Server Framework",
     description:
@@ -100,6 +108,12 @@ const projects = [
   },
 ];
 
+const loadedProjects = ref(new Array(projects.length).fill(false));
+
+const setLoaded = (index) => {
+  loadedProjects.value[index] = true;
+};
+
 onMounted(async () => {
   await nextTick();
   const observer = new IntersectionObserver(
@@ -182,10 +196,20 @@ onMounted(async () => {
                 <div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
                 <div class="w-2.5 h-2.5 rounded-full bg-green-400"></div>
               </div>
+              
+              <div v-if="!loadedProjects[i]" class="absolute inset-x-0 bottom-0 top-11 bg-white z-20 flex flex-col items-center justify-center">
+                <div class="w-full h-full shimmer-bg absolute opacity-50"></div>
+                <div class="flex flex-col items-center gap-4 relative">
+                  <div class="w-10 h-10 border-4 border-[#ff7a30] border-t-transparent rounded-full animate-spin"></div>
+                  <span class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Establishing Session</span>
+                </div>
+              </div>
+
               <iframe
                 :src="proj.link"
                 class="w-full h-full"
                 loading="lazy"
+                @load="setLoaded(i)"
               ></iframe>
             </div>
           </div>
@@ -208,6 +232,26 @@ onMounted(async () => {
 .reveal-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.shimmer-bg {
+  background: linear-gradient(
+    90deg,
+    #fafafa 25%,
+    #f0f0f0 50%,
+    #fafafa 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
 }
 
 @media (max-width: 1024px) {
