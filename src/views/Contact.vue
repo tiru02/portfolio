@@ -49,11 +49,11 @@ const handleRedirect = () => {
           <div class="space-y-6 pt-8">
             <h2 class="text-sm font-black uppercase tracking-widest text-gray-400">Social Presence</h2>
             <div class="flex flex-col gap-6">
-              <a target="_blank" href="https://github.com/tiru-chinnu" class="group flex items-center gap-4 text-2xl font-bold">
+              <a target="_blank" href="https://github.com/tiru02" class="group flex items-center gap-4 text-2xl font-bold">
                 <span class="w-12 h-[1px] bg-black/10 group-hover:w-16 group-hover:bg-[#ff7a30] transition-all"></span>
                 GitHub
               </a>
-              <a target="_blank" href="https://www.instagram.com/ram_02.12" class="group flex items-center gap-4 text-2xl font-bold">
+              <a target="_blank" href="https://www.instagram.com/tiru._1" class="group flex items-center gap-4 text-2xl font-bold">
                 <span class="w-12 h-[1px] bg-black/10 group-hover:w-16 group-hover:bg-[#ff7a30] transition-all"></span>
                 Instagram
               </a>

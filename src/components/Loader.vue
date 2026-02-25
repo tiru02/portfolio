@@ -17,7 +17,7 @@ onUnmounted(() => {
 
 <template>
   <div v-if="loading" class="fixed inset-0 flex items-center justify-center bg-black z-50">
-    <div class="relative text-6xl font-extrabold text-white/10 overflow-visible select-none">
+    <div class="relative text-5xl font-bold text-white/10 overflow-visible select-none">
       जय श्री राम
       <span
         class="
