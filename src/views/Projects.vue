@@ -6,7 +6,7 @@ const projects = [
     name: "Dot FM (Redline v1)",
     description:
       "A high-performance server framework and the previous version of Redline. Engineered as a specialized engine for digital audio and streaming, prioritizing real-time data synchronization and low-latency request handling.",
-    framework: "Node.js & React",
+    framework: "Node.js ",
     link: "https://dot-fm.vercel.app/",
     tag: "Server Architecture",
   },
@@ -46,7 +46,7 @@ const projects = [
     name: "Python Cloud Executor",
     description:
       "A high-performance web-based IDE designed for real-time script execution. Features a secure sandboxed environment for code processing and an intuitive UI for rapid prototyping and debugging.",
-    framework: "Next.js & Flask",
+    framework: "Flask & Python",
     link: "https://pyexec-liart.vercel.app/",
     tag: "System Architecture",
   },
