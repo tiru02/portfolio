@@ -26,7 +26,7 @@ onMounted(() => {
         <span class="block text-[10px] font-black uppercase tracking-[0.5em] text-[#ff4d00]">Error Protocol</span>
         <span class="block text-xs font-mono opacity-40">TIMESTAMP: {{ new Date().toISOString() }}</span>
       </div>
-      <router-link to="/" class="text-[10px] font-black uppercase tracking-widest border-b border-white/20 pb-1 hover:text-[#ff4d00] hover:border-[#ff4d00] transition-all">
+      <router-link to="/" aria-label="Go to Home page" class="text-[10px] font-black uppercase tracking-widest border-b border-white/20 pb-1 hover:text-[#ff4d00] hover:border-[#ff4d00] transition-all">
         Esc Key: Home
       </router-link>
     </div>
@@ -54,7 +54,7 @@ onMounted(() => {
       </div>
       
       <div class="md:col-span-4 flex md:justify-end">
-        <router-link to="/" class="px-10 py-4 bg-white text-black font-black uppercase text-[10px] tracking-[0.3em] hover:bg-[#ff4d00] hover:text-white transition-all">
+        <router-link to="/" aria-label="Reboot system to Home page" class="px-10 py-4 bg-white text-black font-black uppercase text-[10px] tracking-[0.3em] hover:bg-[#ff4d00] hover:text-white transition-all">
           Reboot System
         </router-link>
       </div>

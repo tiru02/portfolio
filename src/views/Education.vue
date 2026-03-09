@@ -1,17 +1,7 @@
 <script setup>
-import { onMounted, nextTick } from 'vue';
+import { useReveal } from '@/composables/useReveal';
 
-onMounted(async () => {
-  await nextTick();
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('reveal-visible');
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-});
+useReveal({ threshold: 0.1 });
 </script>
 
 <template>

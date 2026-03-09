@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, nextTick, ref } from "vue";
+import { useReveal } from "@/composables/useReveal";
 
 const projects = [
   {
@@ -114,18 +115,7 @@ const setLoaded = (index) => {
   loadedProjects.value[index] = true;
 };
 
-onMounted(async () => {
-  await nextTick();
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(
-        (e) => e.isIntersecting && e.target.classList.add("reveal-visible"),
-      );
-    },
-    { threshold: 0.1 },
-  );
-  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-});
+useReveal({ threshold: 0.1 });
 </script>
 
 <template>

@@ -24,7 +24,7 @@ const handleScroll = () => {
 
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
-  // FIX: Prevent background scrolling
+  // Prevent background scrolling
   if (isMobileMenuOpen.value) {
     document.body.style.overflow = 'hidden';
     document.body.style.height = '100vh';
@@ -34,7 +34,7 @@ const toggleMobileMenu = () => {
   }
 };
 
-// FIX: Auto-close and reset scroll when route changes
+// Auto-close and reset scroll when route changes
 watch(() => route.path, () => {
   isMobileMenuOpen.value = false;
   document.body.style.overflow = '';
@@ -149,7 +149,7 @@ onUnmounted(() => {
 
 .active { color: #ff4d00 !important; }
 
-/* FIXED CLOSE BUTTON FIX */
+/* Mobile Toggle Button */
 .mobile-toggle {
   height: max-content;
   display: none; background: #000; border: none; padding: 12px;
