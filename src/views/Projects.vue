@@ -39,7 +39,7 @@ const projects = [
     name: "ASIST Personal Workspace",
     description:
       "A refined productivity dashboard designed for organized task management and fluid workflow execution. Prioritizes a minimalist layout to minimize cognitive load and maximize user focus.",
-    framework: "React & Tailwind CSS",
+    framework: "MERN STACK & Tailwind CSS",
     link: "https://asist-cyan.vercel.app/",
     tag: "Productivity Tool",
   },
